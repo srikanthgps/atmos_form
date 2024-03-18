@@ -1,0 +1,854 @@
+// // import React, { useState } from 'react';
+
+// // function Test() {
+// //   const [formData, setFormData] = useState('');
+
+// //   const handleChange = (event) => {
+// //     setFormData(event.target.value);
+// //   };
+
+// //   const handleSubmit = (event) => {
+// //     event.preventDefault();
+// //     console.log('Submitted data:', formData); // You can use this data for further processing
+// //   };
+
+// //   return (
+// //     <form onSubmit={handleSubmit}>
+// //       <input type="text" value={formData} onChange={handleChange} />
+// //       <button type="submit">Submit</button>
+// //     </form>
+// //   );
+// // }
+// // export default Test;
+
+
+
+// ///test
+// import React, { useState } from 'react';
+
+// function Test() {
+//   const [formData, setFormData] = useState('');
+
+//   const handleChange = (event) => {
+//     setFormData(event.target.value);
+//   };
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     console.log('Submitted data:', formData); // You can use this data for further processing
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input type="text" value={formData} onChange={handleChange} />
+//       <button type="submit">Submit</button>
+//     </form>
+//   );
+// }
+// export default Test;
+
+
+
+
+// //50
+import React, { useState } from 'react';
+import "./testdropdown.css";
+import Modal from "react-modal";
+
+
+function Testdropdown() {
+  const [selectedValue, setSelectedValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [isDropdownValid, setIsDropdownValid] = useState(true);
+  const [isInputValid, setIsInputValid] = useState(true);
+
+  //submitform
+  const [a , setA] = useState('');
+  const [b , setB] = useState('');
+  const [c , setC] = useState('');
+  const [d , setD] = useState('');
+
+  //boolean
+var [isCheckcustId] = useState(false);
+var ischeck =false ;
+ //4 input fields
+  const [showAdditionalFields, setShowAdditionalFields] = useState(false);
+
+  // popup 
+  const [visible, setVisible] = useState(false);
+  const [mvisible, msetVisible] = useState(false);
+
+  //for post 
+  // const [formData, setFormData] = useState({
+  //   project: "",
+  //   customerID: ""
+  //   // a: "",
+  //   // b: "",
+  //   // c: "",
+  //   // d: "",
+  // });
+
+  //for post1
+  // const [project , setProject] = useState("");
+  // const [customerID , setcustomerID] = useState("");
+
+
+  //POST method
+  const [posts, setPosts] = useState([]);
+//   const addPosts = async (project, customerID) => {
+//     let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+//        method: 'POST',
+//        body: JSON.stringify({
+//           project: project,
+//           customerID: customerID,
+//           // a: a,
+//           // b: b,
+//           // c: c,
+//           // d: d,
+//           // formData: formData,
+//           userId: Math.random().toString(36).slice(2),
+//        }),
+//        headers: {
+//           'Content-type': 'application/json; charset=UTF-8',
+//        },
+//     });
+//     let data = await response.json();
+//     setPosts((posts) => [data, ...posts]);
+//     setProject('');
+//     setcustomerID('');
+//     // setA('');
+//     // setB('');
+//     // setC('');
+//     // setD('');
+//     // setFormData('');
+//     console.log(data);
+//  };
+
+
+//addposts
+const addPosts = async (selectedValue, inputValue) => {
+  let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+     method: 'POST',
+     body: JSON.stringify({
+      Project: selectedValue,
+      CustomerID: inputValue,
+        userId: Math.random().toString(36).slice(2),
+     }),
+     headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+     },
+  });
+  let data = await response.json();
+
+  setSelectedValue(selectedValue);
+  setInputValue(inputValue);
+  console.log(data);
+  console.log(response.status);
+
+
+  if(response.status === 201)
+  {
+    // console.log(isCheckcustId);
+    console.log(mvisible);
+    // console.log(visible)
+
+    // ischeck =true;
+    // isCheckcustId = true;
+    msetVisible(true);
+    setShowAdditionalFields(true);
+
+    
+    // submitForm(false);
+    // setVisible(false);
+  }
+  
+}
+
+// submit form
+const submitForm = async (a, b, c, d) => {
+  let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+     method: 'POST',
+     body: JSON.stringify({
+      a: a,
+      b: b,
+      c: c,
+      d: d,
+      userId: Math.random().toString(36).slice(2),
+     }),
+     headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+     },
+  });
+  let data = await response.json();
+      setPosts((posts) => [data, ...posts]);
+      setA(a);
+      setB(b);
+      setC(c);
+      setD(d);
+      // setFormData('');
+      console.log(data);
+
+      if(response.status === 201)
+      {
+        // console.log(isCheckcustId);
+        console.log(visible);
+    
+        // ischeck =true;
+        // isCheckcustId = true;
+        // setVisible(true);
+        // setShowAdditionalFields(true);
+        setVisible(true);
+        // submitForm(false);
+      }
+
+}
+
+  //
+  
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    //state value display
+    console.log('submitted data :' , inputValue)
+    //4 input fields
+  //  setShowAdditionalFields(true);
+  // console.log(isCheckcustId)
+  // console.log(ischeck)
+  console.log(mvisible)
+  if(mvisible==false){
+    // console.log("AAA")                 --
+
+  } else{
+    // console.log("BBB");
+    // console.log("submitForm");         --
+submitForm(a,b,c,d);
+
+}
+
+
+
+   if(isCheckcustId == false) {
+    // console.log("addPosts")             --
+
+addPosts(selectedValue, inputValue);
+
+   }else {  
+    // console.log("submitformmm")             --
+  //  submitForm("vb","vc","xv","vb");
+   setShowAdditionalFields(true);
+   }
+  
+  
+
+    // console.log(selectedValue, inputValue)
+    // addPosts(selectedValue, inputValue);
+  
+    
+    const trimmedValue = inputValue.trim(); // Trim whitespace
+    setIsDropdownValid(selectedValue !== '');
+    setIsInputValid(trimmedValue !== '');
+    if (isDropdownValid && isInputValid) {
+      console.log('Form submitted with values:', selectedValue, trimmedValue);
+    }
+  };
+
+
+  const handleDropdownChange = (event) => {
+    setSelectedValue(event.target.value);
+    setIsDropdownValid(event.target.value !== '');
+  };
+
+
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+    setIsInputValid(event.target.value.trim() !== '');
+  };
+
+  const handleChangeA = (event) => {
+    setA(event.target.value)
+  };
+  const handleChangeB = (event) => {
+    setB(event.target.value)
+  };
+  const handleChangeC = (event) => {
+    setC(event.target.value)
+  };
+  const handleChangeD = (event) => {
+    setD(event.target.value)
+  };
+
+
+
+  return (
+    <div className="body">
+    <form onSubmit={handleSubmit}>
+    <div className="heading">
+    <h2 className='m-3'>ATMOS </h2>
+    <h3>Create A Ticket</h3>
+    </div>
+
+    <h4>Project</h4>
+      <select 
+      style={{ margin:0, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+      className='text1' 
+      name="project" 
+      id="project" 
+      autoComplete='off'
+      // placeholder='Select a project' 
+      value={selectedValue} 
+      onChange={handleDropdownChange}> 
+        <option value="">Select a project</option>
+        <option value="option1">Project 1</option>
+        <option value="option2">Project 2</option>
+        <option value="option2">Project 3</option>
+      </select>
+      {!isDropdownValid && <p style={{ color: 'red' }}>Please select an option.</p>}
+ <br /> <br />
+      {/* customer  */}
+      <h4>Customer ID</h4>
+      <input
+        style={{ margin:0, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+        className='text1' 
+        type="text" 
+        name="customerID" 
+        id="customerID"   
+        placeholder='Enter Customer ID' 
+        autoComplete='off'
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      {!isInputValid && <p style={{ color: 'red' }}>Please enter a value.</p>}
+     
+
+
+
+     {/* 4 input fields */}
+    {/* Existing form fields (2 input fields initially) */}
+    {showAdditionalFields && (
+        <div className='mt-3'>
+          {/* <input type="text" />
+          <input type="text" /> */}
+          <input type="text" 
+          value={a}
+          onChange={handleChangeA} 
+          style={{ marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+          />
+          <input type="text" 
+          value={b}
+          onChange={handleChangeB} 
+          style={{ marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+          />
+          <select 
+          value={c}
+          onChange={handleChangeC} 
+          style={{ marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+          >
+            <option value="">Select</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+          </select>
+          <textarea 
+          value={d}
+          onChange={handleChangeD}  
+          style={{marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px", height:"100px"}}
+          />
+
+          {/* <div> <input type="reset" value="Reset Form" /></div> */}
+        </div>
+      )}
+
+
+     {/* popup */}
+     <div>
+        <Modal
+          isOpen={visible}
+          onRequestClose={() => setVisible(false)}
+          style={{
+            overlay: {
+              position: "fixed",
+              zIndex: 1020,
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              background: "rgba(255, 255, 255, 0.7)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+            content: {
+              background: "white",
+              width: "45rem",
+              maxWidth: "calc(100vw - 2rem)",
+              maxHeight: "calc(100vh - 2rem)",
+              overflowY: "auto",
+              position: "relative",
+              border: "1px solid #ccc",
+              borderRadius: "1rem",
+            },
+          }}
+        >
+          <h1>Thank You...!</h1>
+          {/* <h5>
+            Your Order has been submitted. <br /> <br />
+            Thank you{" "}
+          </h5> <br /> */}
+          <button
+            type="button"
+            className="btn1 btn-success"
+            onClick={() => setVisible(false)}
+          >
+            OK
+          </button>
+        </Modal>
+        
+      </div>
+
+      <button onSubmit={submitForm} className='btn btn-success' type="submit" disabled={!isDropdownValid || !isInputValid}
+      onClick={({}) => setVisible(false)}
+      >
+        Submit
+      </button>
+    </form>
+    </div>
+  );
+}
+
+export default Testdropdown;
+
+
+
+
+
+
+
+
+
+//500
+// import React, { useState } from 'react';
+// import "./testdropdown.css";
+// import Modal from "react-modal";
+
+
+// function Testdropdown() {
+//   const [selectedValue, setSelectedValue] = useState('');
+//   const [inputValue, setInputValue] = useState('');
+//   const [isDropdownValid, setIsDropdownValid] = useState(true);
+//   const [isInputValid, setIsInputValid] = useState(true);
+
+//   //submitform
+//   const [a , setA] = useState('');
+//   const [b , setB] = useState('');
+//   const [c , setC] = useState('');
+//   const [d , setD] = useState('');
+//   const [errors, setErrors] = useState('');
+
+//   //boolean
+// var [isCheckcustId] = useState(false);
+// var ischeck =false ;
+//  //4 input fields
+//   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
+
+//   // popup 
+//   const [visible, setVisible] = useState(false);
+//   const [mvisible, msetVisible] = useState(false);
+
+//   //for post 
+//   // const [formData, setFormData] = useState({
+//   //   project: "",
+//   //   customerID: ""
+//   //   // a: "",
+//   //   // b: "",
+//   //   // c: "",
+//   //   // d: "",
+//   // });
+
+//   //for post1
+//   // const [project , setProject] = useState("");
+//   // const [customerID , setcustomerID] = useState("");
+
+
+//   //POST method
+//   const [posts, setPosts] = useState([]);
+// //   const addPosts = async (project, customerID) => {
+// //     let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+// //        method: 'POST',
+// //        body: JSON.stringify({
+// //           project: project,
+// //           customerID: customerID,
+// //           // a: a,
+// //           // b: b,
+// //           // c: c,
+// //           // d: d,
+// //           // formData: formData,
+// //           userId: Math.random().toString(36).slice(2),
+// //        }),
+// //        headers: {
+// //           'Content-type': 'application/json; charset=UTF-8',
+// //        },
+// //     });
+// //     let data = await response.json();
+// //     setPosts((posts) => [data, ...posts]);
+// //     setProject('');
+// //     setcustomerID('');
+// //     // setA('');
+// //     // setB('');
+// //     // setC('');
+// //     // setD('');
+// //     // setFormData('');
+// //     console.log(data);
+// //  };
+
+
+// //addposts
+// const addPosts = async (selectedValue, inputValue) => {
+//   let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+//      method: 'POST',
+//      body: JSON.stringify({
+//       Project: selectedValue,
+//       CustomerID: inputValue,
+//         userId: Math.random().toString(36).slice(2),
+//      }),
+//      headers: {
+//         'Content-type': 'application/json; charset=UTF-8',
+//      },
+//   });
+//   let data = await response.json();
+
+//   setSelectedValue(selectedValue);
+//   setInputValue(inputValue);
+//   console.log(data);
+//   console.log(response.status);
+
+
+//   if(response.status === 201)
+//   {
+//     // console.log(isCheckcustId);
+//     console.log(mvisible);
+//     // console.log(visible)
+
+//     // ischeck =true;
+//     // isCheckcustId = true;
+//     msetVisible(true);
+//     console.log(mvisible);
+
+//     setShowAdditionalFields(true);  
+//   }
+
+//   //validation check
+// // if (response.status === 200) {
+// //   console.log('Form submitted successfully:', data);
+// //   handleDropdownChange(selectedValue);
+// //   handleInputChange(inputValue);
+// // } else {
+// //   console.error('Server error:');
+// //   setErrors({ server: 'An error occurred on the server' });
+// // }
+
+  
+// }
+
+
+
+
+
+// // submit form
+// const submitForm = async (a, b, c, d) => {
+//   let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+//      method: 'POST',
+//      body: JSON.stringify({
+//       a: a,
+//       b: b,
+//       c: c,
+//       d: d,
+//       userId: Math.random().toString(36).slice(2),
+//      }),
+//      headers: {
+//         'Content-type': 'application/json; charset=UTF-8',
+//      },
+//   });
+//   let data = await response.json();
+//       // setPosts((posts) => [data, ...posts]);
+//       setA(a);
+//       setB(b);
+//       setC(c);
+//       setD(d);
+//       // setFormData('');
+//       console.log(data);
+
+
+      
+
+
+      
+
+//       if(response.status === 201)
+//       {
+//         // console.log(isCheckcustId);
+//         console.log(visible);
+//         // ischeck =true;
+//         // isCheckcustId = true;
+//         // setVisible(true);
+//         // setShowAdditionalFields(true);
+//         setVisible(true);
+//       }
+
+// }
+
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+
+//     //state value display
+//     // console.log('submitted data :' , inputValue)
+//     //4 input fields
+//   //  setShowAdditionalFields(true);
+//   // console.log(isCheckcustId)
+//   // console.log(ischeck)
+//   console.log(mvisible)
+
+
+//   if(mvisible == false){
+//       console.log("AAA");
+//       addPosts(selectedValue, inputValue);
+
+//    } else{
+//       console.log("BBB");
+//       submitForm(a,b,c,d);
+
+ 
+//      // console.log("submitForm");         --
+//  // submitForm(a,b,c,d);
+ 
+//  }
+
+//   console.log(!isDropdownValid)
+//   console.log(!isInputValid)
+//   if(!isDropdownValid && !isInputValid) {
+//     console.log("error")
+
+//   } 
+//   else {
+//     console.log("no error")
+    
+//   }
+  
+  
+
+  
+  
+
+  
+// //   if(mvisible == true){
+// //      console.log("AAA");
+// //  submitForm(a,b,c,d);
+// //   } else{
+// //      console.log("BBB");
+// //      addPosts(selectedValue, inputValue);
+
+// //     // console.log("submitForm");         --
+// // // submitForm(a,b,c,d);
+
+// // }
+
+
+
+// //    if(isCheckcustId == false) {
+// //      console.log("addPosts");
+
+// // addPosts(selectedValue, inputValue);
+
+// //    }else {  
+// //      console.log("submitformmm");
+// //   //  submitForm("vb","vc","xv","vb");
+// //   //  setShowAdditionalFields(false);
+// //    submitForm(a,b,c,d);
+// //    }
+
+
+  
+  
+  
+
+//     // console.log(selectedValue, inputValue)
+//     // addPosts(selectedValue, inputValue);
+  
+    
+//     const trimmedValue = inputValue.trim(); // Trim whitespace
+//     setIsDropdownValid(selectedValue !== '');
+//     setIsInputValid(trimmedValue !== '');
+//     if (isDropdownValid && isInputValid) {
+//       console.log('Form submitted with values:', selectedValue, trimmedValue);
+//     }
+//   };
+
+
+//   const handleDropdownChange = (event) => {
+//     setSelectedValue(event.target.value);
+//     setIsDropdownValid(event.target.value !== '');
+//   };
+
+
+
+//   const handleInputChange = (event) => {
+//     setInputValue(event.target.value);
+//     setIsInputValid(event.target.value.trim() !== '');
+//   };
+
+//   const handleChangeA = (event) => {
+//     setA(event.target.value)
+//   };
+//   const handleChangeB = (event) => {
+//     setB(event.target.value)
+//   };
+//   const handleChangeC = (event) => {
+//     setC(event.target.value)
+//   };
+//   const handleChangeD = (event) => {
+//     setD(event.target.value)
+//   };
+
+
+
+//   return (
+//     <div className="body">
+//     <form onSubmit={handleSubmit}>
+//     <div className="heading">
+//     <h2 className='m-3'>ATMOS </h2>
+//     <h3>Create A Ticket</h3>
+//     </div>
+
+//     <h4>Project</h4>
+//       <select 
+//       style={{ margin:0, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+//       className='text1' 
+//       name="project" 
+//       id="project" 
+//       autoComplete='off'
+//       // placeholder='Select a project' 
+//       value={selectedValue} 
+//       onChange={handleDropdownChange}> 
+//         <option value="">Select a project</option>
+//         <option value="option1">Project 1</option>
+//         <option value="option2">Project 2</option>
+//         <option value="option2">Project 3</option>
+//       </select>
+//       {!isDropdownValid && <p style={{ color: 'red' }}>Please select an option.</p>}
+//  <br /> <br />
+//       {/* customer  */}
+//       <h4>Customer ID</h4>
+//       <input
+//         style={{ margin:0, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+//         className='text1' 
+//         type="text" 
+//         name="customerID" 
+//         id="customerID"   
+//         placeholder='Enter Customer ID' 
+//         autoComplete='off'
+//         value={inputValue}
+//         onChange={handleInputChange}
+//       />
+//       {!isInputValid && <p style={{ color: 'red' }}>Please enter a value.</p>}
+     
+
+
+
+//      {/* 4 input fields */}
+//     {/* Existing form fields (2 input fields initially) */}
+   
+//     {showAdditionalFields && (
+//         <div className='mt-3'>
+//           {/* <input type="text" />
+//           <input type="text" /> */}
+//           <input type="text" 
+//           value={a}
+//           onChange={handleChangeA} 
+//           style={{ marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+//           />
+//           <input type="text" 
+//           value={b}
+//           onChange={handleChangeB} 
+//           style={{ marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+          />
+          <select 
+          value={c}
+          onChange={handleChangeC} 
+          style={{ marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px"}}
+          >
+            <option value="">Select</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+          </select>
+          <textarea 
+          value={d}
+          onChange={handleChangeD}  
+          style={{marginTop:20, width: 340, height: 45 , backgroundColor: 'rgba(0, 0, 0, 0.2)', color: 'rgba(255, 255, 255)' , fontSize:"20px", borderRadius:"5px", height:"100px"}}
+          />
+        </div>
+      )}
+
+      {/* <div> <input type="reset" value="Reset Form" /></div> */}
+
+
+     {/* popup */}
+     <div>
+        <Modal
+          isOpen={visible}
+          onRequestClose={() => setVisible(false)}
+          style={{
+            overlay: {
+              position: "fixed",
+              zIndex: 1020,
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              background: "rgba(255, 255, 255, 0.7)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            },
+            content: {
+              background: "white",
+              width: "45rem",
+              maxWidth: "calc(100vw - 2rem)",
+              maxHeight: "calc(100vh - 2rem)",
+              overflowY: "auto",
+              position: "relative",
+              border: "1px solid #ccc",
+              borderRadius: "1rem",
+            },
+          }}
+        >
+          <h1>Thank You...!</h1>
+          {/* <h5>
+            Your Order has been submitted. <br /> <br />
+            Thank you{" "}
+          </h5> <br /> */}
+          <button
+            type="button"
+            className="btn1 btn-success"
+            onClick={() => setVisible(false)}
+          >
+            OK
+          </button>
+        </Modal>
+        
+      </div>
+
+      <button onSubmit={submitForm} className='btn btn-success' type="submit" disabled={!isDropdownValid || !isInputValid}
+      onClick={({}) => setVisible(false)}
+      >
+        Submit
+      </button>
+    </form>
+    </div>
+  );
+}
+
+export default Testdropdown;

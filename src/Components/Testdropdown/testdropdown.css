@@ -1,0 +1,88 @@
+.body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(C:\Users\KITS\atmos_form_dev\user_app\src\assets\images\beautiful-nature-view-green-leaf-on-blurred-greenery-background-under-sunlight-with-bokeh-and-shadow-and-copy-space-using-as-background-natural-plants-landscape-ecology-wallpaper-conc.jpg);
+    position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 1;
+  }
+
+  
+  form {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 150px;
+  }
+  
+  .heading:first-child {
+    font-size: 24px;
+  }
+  
+  .heading:last-child {
+    font-size: 18px;
+  }
+
+/*   
+  label {
+    display: block;
+    margin-bottom: 5px;
+  } */
+  
+  /* .input-field {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #522626;
+    border-radius: 3px;
+    margin-bottom: 15px;
+  } */
+
+ 
+  
+  .btn {
+    background-color: #31523a;
+    /* color: white; */
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 120px; 
+    margin-bottom: 150px;
+  }
+
+  .btn1{
+    width: 60px;
+  }
+
+  .dropdown{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+  }
+
+  .input{
+    margin-top: 20px;
+    border-radius: 15px;
+  }
+
+
+
+  /* @media (max-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+  } */
+  
